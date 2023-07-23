@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:padding="15dp"
+
+    tools:context=".FunctionActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/Commit"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="270dp"
+            android:text="√"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+
+<EditText
+    android:id="@+id/title_text_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:textColor="@color/black"
+    android:ellipsize="end"
+    android:maxLines="5"
+    android:scrollbars="vertical"
+    android:hint="@string/title"
+    android:inputType="textMultiLine"
+    android:background="@android:drawable/edit_text"
+    android:autofillHints="" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal"
+>
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="45dp"
+        tools:ignore="TouchTargetSizeCheck"
+        android:text="加粗"
+        android:background="@drawable/bg_username"
+        />
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        tools:ignore="TouchTargetSizeCheck"
+        android:textSize="8sp"
+        android:text="下划线"
+        android:background="@drawable/bg_username"
+        />
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="45dp"
+    android:layout_marginStart="15dp"
+        tools:ignore="TouchTargetSizeCheck"
+        android:text="斜体"
+        android:background="@drawable/bg_username"
+        />
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        tools:ignore="TouchTargetSizeCheck"
+        android:text="颜色"
+        android:background="@drawable/bg_username"
+        />
+
+
+</LinearLayout>
+    <EditText
+        android:id="@+id/content_text_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:inputType="textMultiLine"
+        android:hint="..."
+        android:autofillHints=""
+        tools:ignore="TouchTargetSizeCheck"
+        android:scrollbars="vertical"
+
+        />
+
+    </LinearLayout>
+</ScrollView>

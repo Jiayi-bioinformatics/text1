@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">text2</string>
+    <string name="title">Title</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="commit">Commit</string>>
+</resources>
