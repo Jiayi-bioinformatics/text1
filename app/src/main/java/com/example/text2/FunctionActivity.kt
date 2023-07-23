@@ -5,10 +5,8 @@ import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
-import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
-import android.text.style.StyleSpan
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -25,7 +23,6 @@ class FunctionActivity : AppCompatActivity() {
     private var myBtn1: Button? = null
     private var myBtn2: Button? = null
     private var myBtn3: Button? = null
-    private var Btn: Button? = null
 
 
     @SuppressLint("SuspiciousIndentation")
@@ -40,37 +37,43 @@ class FunctionActivity : AppCompatActivity() {
         val myBtn2 = findViewById<View>(id.btn_2) as Button
         val myBtn3 = findViewById<View>(id.btn_3) as Button
         var controlTSP = intArrayOf(0,0,0)
-        fun validateButton(button: Button,num: Int){
+          fun validateButton(button: Button,num: Int,editText: EditText){
             button.setOnClickListener {
-                if (controlTSP.get(num)==0) {controlTSP.set(num,1)
+                if (controlTSP[num] == 0) {
+                    controlTSP[num] = 1
                     button.setBackgroundResource(drawable.ic_launcher_background)
-                }
-                else {controlTSP.set(num,0)
+                } else {
+                    controlTSP[num] = 0
                     button.setBackgroundResource(drawable.bg_username)
 
                 }
+//                转型
+                var text = contentInput.text.toString()
+//                转型
+                var spannableString = SpannableString(text)
+//                字符串的长度
+                var endNumber = spannableString.length-1
 
-                val text= contentInput.text.toString()
-                val spannableString = SpannableString(text)
-                val number = spannableString.length
+//                判断字体类型
                 var textStyle = Typeface.NORMAL
-                if (controlTSP.get(2)==1&&controlTSP.get(0)==1)
+                if (controlTSP[2] ==1&& controlTSP[0] ==1)
                     textStyle = Typeface.BOLD_ITALIC
-                else if(controlTSP.get(2)==1&&controlTSP.get(0)==0)
+                else if(controlTSP[2] ==1&& controlTSP[0] ==0)
                     textStyle = Typeface.ITALIC
-                else if(controlTSP.get(2)==0&&controlTSP.get(0)==1)textStyle = Typeface.BOLD
+                else if(controlTSP[2] ==0&& controlTSP[0] ==1)textStyle = Typeface.BOLD
 
-                spannableString.setSpan (
-                    StyleSpan(textStyle),
-                    number,
-                    number,
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+//                方案一：保存原字体的字符串，改变EditText的输入字体类型（全体改变），用前者覆盖新文本；
+//                方案二：spannableString内进行更改（但没有找到合适的函数调节样式），setSpan前闭后开，start和end都是字符串长度，
+//                最后再赋值给EditText的文本；
 
-            }}
+              }
+
+
+          }
 //激活Buttons切换正文字体
-        validateButton(myBtn1,0)
-        validateButton(myBtn2,1)
-        validateButton(myBtn3,2)
+        validateButton(myBtn1,0,contentInput)
+        validateButton(myBtn2,1,contentInput)
+        validateButton(myBtn3,2,contentInput)
 
 //        实现标题切换字体大小的换行功能
         titleInput.addTextChangedListener(object : TextWatcher {
@@ -84,7 +87,7 @@ class FunctionActivity : AppCompatActivity() {
                 if (lines > 1) {
                     // 当文本超过一行时，改变字体大小
                     titleInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                } else {
+                } else if (titleInput.length()<15) {
                     // 当文本只有一行时，恢复默认字体大小
                     titleInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
                 }
@@ -92,7 +95,7 @@ class FunctionActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 // 在文本变化之后的操作
-                titleInput.height = titleInput.lineHeight * titleInput.lineCount
+
             }
         })
 
